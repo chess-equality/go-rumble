@@ -1,0 +1,6 @@
+{
+  "amqpUser": "",
+  "amqpPassword": "",
+  "amqpHost": "",
+  "amqpPort": ""
+}
