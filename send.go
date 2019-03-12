@@ -11,6 +11,9 @@ import (
 func main() {
 
 	config, err := readConfig()
+	if err != nil {
+		panic(err)
+	}
 
 	log.Printf("amqp config = %s", config.GetAmqpConfig())
 
@@ -40,6 +43,7 @@ func readConfig() (*config.Config, error) {
 	}
 
 	if errMarshall := json.Unmarshal(all, &config); errMarshall != nil {
+		log.Fatalf("Error in unmarshalling: %s", errMarshall)
 		return nil, errMarshall
 	}
 
