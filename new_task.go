@@ -4,6 +4,8 @@ import (
 	"github.com/streadway/amqp"
 	"go-rumble/util"
 	"log"
+	"os"
+	"strings"
 )
 
 func main() {
@@ -27,26 +29,40 @@ func main() {
 
 	// Declare queue
 	q, err := ch.QueueDeclare(
-		"goa", // name
-		false, // durable
-		false, // delete when unused
-		false, // exclusive
-		false, // no-wait
-		nil,   // arguments
+		"task_queue", // name
+		true,         // durable
+		false,        // delete when unused
+		false,        // exclusive
+		false,        // no-wait
+		nil,          // arguments
 	)
 	util.FailOnError(err, "Failed to declare queue")
 
 	// Publish message to queue
-	body := "Hello goa!"
+
+	body := bodyFrom(os.Args)
+
 	err = ch.Publish(
 		"",     // exchange
 		q.Name, // routing key
 		false,  // mandatory
 		false,  // immediate
 		amqp.Publishing{
-			ContentType: "text/plain",
-			Body:        []byte(body),
+			DeliveryMode: amqp.Persistent,
+			ContentType:  "text/plain",
+			Body:         []byte(body),
 		})
 	util.FailOnError(err, "Failed to publish a message")
 	log.Printf(" [x] Sent %s", body)
+}
+
+func bodyFrom(args []string) string {
+	var s string
+	if (len(args) < 2) || os.Args[1] == "" {
+		s = "hello"
+	} else {
+		s = strings.Join(args[1:], " ")
+	}
+	log.Printf(" s = %s", s)
+	return s
 }
