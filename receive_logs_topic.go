@@ -8,7 +8,7 @@ import (
 )
 
 // To save logs to a file:
-//  go run receive_logs_direct.go &>> logs_from_rabbit.log
+//  go run receive_logs_topic.go &>> logs_from_rabbit.log
 func main() {
 
 	config, err := util.ReadConfig()
@@ -29,15 +29,15 @@ func main() {
 	defer ch.Close()
 
 	// Declare an exchange
-	exchange := "logs_direct"
+	exchange := "logs_topic"
 	err = ch.ExchangeDeclare(
-		exchange,            // name
-		amqp.ExchangeDirect, // type
-		true,                // durable
-		false,               // auto-deleted
-		false,               // internal
-		false,               // no-wait
-		nil,                 // arguments
+		exchange,           // name
+		amqp.ExchangeTopic, // type
+		true,               // durable
+		false,              // auto-deleted
+		false,              // internal
+		false,              // no-wait
+		nil,                // arguments
 	)
 	util.FailOnError(err, "Failed to declare an exchange")
 
@@ -53,7 +53,7 @@ func main() {
 	util.FailOnError(err, "Failed to declare queue")
 
 	if len(os.Args) < 2 {
-		log.Printf("Usage: %s [info] [warning] [error]", os.Args[0])
+		log.Printf("Usage: %s [binding_key]", os.Args[0])
 		os.Exit(0)
 	}
 
