@@ -5,8 +5,13 @@ import (
 	"go-rumble/config"
 	"io/ioutil"
 	"log"
-	"os"
 	"strings"
+)
+
+const (
+	SeverityInfo    = "info"
+	SeverityWarning = "warning"
+	SeverityError   = "error"
 )
 
 func FailOnError(err error, msg string) {
@@ -36,12 +41,39 @@ func ReadConfig() (*config.Config, error) {
 }
 
 func BodyFrom(args []string) string {
+
 	var s string
-	if (len(args) < 2) || os.Args[1] == "" {
+
+	if (len(args) < 2) || args[1] == "" {
 		s = "hello"
 	} else {
 		s = strings.Join(args[1:], " ")
 	}
+
 	log.Printf(" s = %s", s)
+
+	return s
+}
+
+func SeverityFrom(args []string) string {
+
+	var s string
+
+	if (len(args) < 2) || args[1] == "" {
+		s = SeverityInfo
+	} else {
+		switch args[1] {
+		case SeverityInfo:
+		default:
+			s = SeverityInfo
+		case SeverityWarning:
+			s = SeverityWarning
+		case SeverityError:
+			s = SeverityError
+		}
+	}
+
+	log.Printf(" s = %s", s)
+
 	return s
 }
