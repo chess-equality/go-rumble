@@ -5,6 +5,8 @@ import (
 	"go-rumble/config"
 	"io/ioutil"
 	"log"
+	"os"
+	"strings"
 )
 
 func FailOnError(err error, msg string) {
@@ -31,4 +33,15 @@ func ReadConfig() (*config.Config, error) {
 	}
 
 	return &config, nil
+}
+
+func BodyFrom(args []string) string {
+	var s string
+	if (len(args) < 2) || os.Args[1] == "" {
+		s = "hello"
+	} else {
+		s = strings.Join(args[1:], " ")
+	}
+	log.Printf(" s = %s", s)
+	return s
 }
