@@ -22,9 +22,10 @@ func TestAppendSlice(t *testing.T) {
 
 	for _, test := range tests {
 
+		// Test
 		actual := Append(test.input, test.appended)
 		log.Printf(">>>> actual = %s", string(actual))
 
-		assert.Equal(Append(test.input, test.appended), test.expected)
+		assert.Equal(actual, test.expected)
 	}
 }
