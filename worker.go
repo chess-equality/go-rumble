@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+//  go run worker.go
 func main() {
 
 	config, err := util.ReadConfig()

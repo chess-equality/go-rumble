@@ -50,7 +50,7 @@ func BodyFrom(args []string) string {
 		s = strings.Join(args[1:], " ")
 	}
 
-	log.Printf(" s = %s", s)
+	log.Printf(" (BodyFrom) body = %s", s)
 
 	return s
 }
@@ -73,7 +73,7 @@ func SeverityFrom(args []string) string {
 		}
 	}
 
-	log.Printf(" s = %s", s)
+	log.Printf(" (SeverityFrom) severity = %s", s)
 
 	return s
 }

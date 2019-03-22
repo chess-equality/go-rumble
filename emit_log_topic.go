@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+// To emit a log with a routing key "kern.critical" type:
+//  go run emit_log_topic.go "kern.critical" "A critical kernel error"
 func main() {
 
 	config, err := util.ReadConfig()

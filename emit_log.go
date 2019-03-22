@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+//  go run emit_log.go
 func main() {
 
 	config, err := util.ReadConfig()
