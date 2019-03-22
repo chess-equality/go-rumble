@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+//  go run receive.go
 func main() {
 
 	config, err := util.ReadConfig()

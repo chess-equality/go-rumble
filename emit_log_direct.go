@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+//  go run emit_log_direct.go error "Run. Run. Or it will explode."
 func main() {
 
 	config, err := util.ReadConfig()

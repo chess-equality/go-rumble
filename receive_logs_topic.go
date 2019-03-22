@@ -9,6 +9,18 @@ import (
 
 // To save logs to a file:
 //  go run receive_logs_topic.go &>> logs_from_rabbit.log
+//
+// To receive all the logs:
+//  go run receive_logs_topic.go "#"
+//
+// To receive all logs from the facility "kern":
+//  go run receive_logs_topic.go "kern.*"
+//
+// Or if you want to hear only about "critical" logs:
+//  go run receive_logs_topic.go "*.critical"
+//
+// You can create multiple bindings:
+//  go run receive_logs_topic.go "kern.*" "*.critical"
 func main() {
 
 	config, err := util.ReadConfig()

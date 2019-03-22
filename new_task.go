@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+//  go run new_task.go ...
 func main() {
 
 	config, err := util.ReadConfig()

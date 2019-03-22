@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+//  go run rpc_server.go
 func main() {
 
 	config, err := util.ReadConfig()

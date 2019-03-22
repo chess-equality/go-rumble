@@ -11,6 +11,10 @@ import (
 	"time"
 )
 
+//  go run rpc_client.go 30
+//
+// Where:
+// 30 - length of the Fibonacci sequence
 func main() {
 
 	rand.Seed(time.Now().UTC().UnixNano())

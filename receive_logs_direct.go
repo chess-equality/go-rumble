@@ -8,7 +8,10 @@ import (
 )
 
 // To save logs to a file:
-//  go run receive_logs_direct.go &>> logs_from_rabbit.log
+//  go run receive_logs_direct.go info warning error &>> logs_from_rabbit.log
+//
+// If you want to save only 'warning' and 'error' (and not 'info') log messages to a file:
+//  go run receive_logs_direct.go warning error &>> logs_from_rabbit.log
 func main() {
 
 	config, err := util.ReadConfig()
