@@ -1,6 +1,6 @@
 module go-rumble
 
-go 1.12
+go 1.12.1
 
 require (
 	github.com/streadway/amqp v0.0.0-20190312002841-61ee40d2027b
